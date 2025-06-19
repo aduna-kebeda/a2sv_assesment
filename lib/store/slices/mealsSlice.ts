@@ -12,9 +12,10 @@ interface MealsState {
   loading: boolean
   error: string | null
   lastFetch: number | null
+  hydrated: boolean
 }
 
-// Helper functions for localStorage
+// Helper functions for localStorage - only run on client
 const loadFromStorage = (): Partial<MealsState> => {
   if (typeof window === "undefined") return {}
   try {
@@ -40,16 +41,15 @@ const saveToStorage = (state: MealsState) => {
   }
 }
 
-const storedState = loadFromStorage()
-
 const initialState: MealsState = {
-  meals: storedState.meals || [],
-  filteredMeals: storedState.meals || [],
+  meals: [],
+  filteredMeals: [],
   searchQuery: "",
   selectedMeal: null,
   loading: false,
   error: null,
-  lastFetch: storedState.lastFetch || null,
+  lastFetch: null,
+  hydrated: false,
 }
 
 // Async thunks
@@ -132,6 +132,15 @@ const mealsSlice = createSlice({
   name: "meals",
   initialState,
   reducers: {
+    hydrate: (state) => {
+      if (typeof window !== "undefined" && !state.hydrated) {
+        const stored = loadFromStorage()
+        state.meals = stored.meals || []
+        state.filteredMeals = stored.meals || []
+        state.lastFetch = stored.lastFetch || null
+        state.hydrated = true
+      }
+    },
     setSearchQuery: (state, action: PayloadAction<string>) => {
       state.searchQuery = action.payload
       // Filter meals locally if we have data
@@ -294,5 +303,5 @@ const mealsSlice = createSlice({
   },
 })
 
-export const { setSearchQuery, setSelectedMeal, clearError, clearMeals } = mealsSlice.actions
+export const { hydrate, setSearchQuery, setSelectedMeal, clearError, clearMeals } = mealsSlice.actions
 export default mealsSlice.reducer

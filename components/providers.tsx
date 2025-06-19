@@ -9,7 +9,13 @@ import { store } from "@/lib/store"
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <Provider store={store}>
-      <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="light"
+        enableSystem={false}
+        disableTransitionOnChange
+        storageKey="foodwagon-theme"
+      >
         {children}
         <Toaster
           position="top-right"

@@ -12,7 +12,14 @@ import MealCardMenu from "@/components/meal-card-menu"
 import Footer from "@/components/footer"
 import ThemeToggle from "@/components/theme-toggle"
 import { useAppDispatch, useAppSelector } from "@/lib/store/hooks"
-import { fetchMeals, searchMeals, setSearchQuery, setSelectedMeal, clearError } from "@/lib/store/slices/mealsSlice"
+import {
+  fetchMeals,
+  searchMeals,
+  setSearchQuery,
+  setSelectedMeal,
+  clearError,
+  hydrate,
+} from "@/lib/store/slices/mealsSlice"
 import {
   setAddModalOpen,
   setEditModalOpen,
@@ -27,22 +34,33 @@ export default function HomePage() {
   const dispatch = useAppDispatch()
 
   // Redux state
-  const { filteredMeals, searchQuery, selectedMeal, loading, error, lastFetch } = useAppSelector((state) => state.meals)
+  const { filteredMeals, searchQuery, selectedMeal, loading, error, lastFetch, hydrated } = useAppSelector(
+    (state) => state.meals,
+  )
 
   const { isAddModalOpen, isEditModalOpen, isDeleteModalOpen, selectedDeliveryType } = useAppSelector(
     (state) => state.ui,
   )
 
+  // Hydrate from localStorage on client
+  useEffect(() => {
+    dispatch(hydrate())
+  }, [dispatch])
+
   // Fetch meals on component mount
   useEffect(() => {
+    if (!hydrated) return // Wait for hydration
+
     const shouldFetch = !lastFetch || Date.now() - lastFetch > 5 * 60 * 1000 // 5 minutes
     if (shouldFetch) {
       dispatch(fetchMeals())
     }
-  }, [dispatch, lastFetch])
+  }, [dispatch, lastFetch, hydrated])
 
   // Handle search with debouncing
   useEffect(() => {
+    if (!hydrated) return // Wait for hydration
+
     const timeoutId = setTimeout(() => {
       if (searchQuery.trim()) {
         dispatch(searchMeals(searchQuery))
@@ -52,7 +70,7 @@ export default function HomePage() {
     }, 300)
 
     return () => clearTimeout(timeoutId)
-  }, [searchQuery, dispatch])
+  }, [searchQuery, dispatch, hydrated])
 
   const handleSearchChange = (value: string) => {
     dispatch(setSearchQuery(value))
@@ -95,7 +113,7 @@ export default function HomePage() {
                 onClick={() => dispatch(setAddModalOpen(true))}
                 className="bg-primary-500 hover:bg-primary-600 text-white font-medium px-4 py-2 text-sm rounded-lg"
               >
-                Get Food
+                Add Food
               </Button>
             </div>
           </div>
@@ -210,7 +228,7 @@ export default function HomePage() {
           )}
 
           {/* Empty State */}
-          {!loading && !error && filteredMeals.length === 0 && (
+          {!loading && !error && filteredMeals.length === 0 && hydrated && (
             <div className="text-center py-12">
               <div className="empty-state-message text-gray-500 dark:text-gray-400 text-lg">
                 {searchQuery ? `No meals found for "${searchQuery}"` : "No items available"}
