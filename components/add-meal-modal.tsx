@@ -57,27 +57,27 @@ export default function AddMealModal({ isOpen, onClose }: AddMealModalProps) {
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-2xl w-full max-w-md max-h-[90vh] overflow-y-auto shadow-2xl">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl w-full max-w-sm max-h-[80vh] overflow-y-auto shadow-2xl">
         {/* Header with Orange Background */}
-        <div className="bg-primary-500 text-white p-6 rounded-t-2xl">
+        <div className="bg-primary-500 text-white p-4 rounded-t-2xl">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold">Add a meal</h2>
+            <h2 className="text-lg font-bold">Add a meal</h2>
             <Button
               variant="ghost"
               size="sm"
               onClick={handleCancel}
-              className="p-2 hover:bg-white/20 rounded-full text-white"
+              className="p-1 hover:bg-white/20 rounded-full text-white"
               disabled={loading}
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4" />
             </Button>
           </div>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="p-6 space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="p-4 space-y-3">
           {/* Food Name */}
           <div>
-            <Label htmlFor="food_name" className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-1 block">
+            <Label htmlFor="food_name" className="text-xs font-medium text-gray-700 dark:text-gray-200 mb-1 block">
               Food name
             </Label>
             <Input
@@ -86,11 +86,11 @@ export default function AddMealModal({ isOpen, onClose }: AddMealModalProps) {
               name="food_name"
               type="text"
               placeholder="Food name"
-              className="h-11 border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:text-white"
+              className="h-9 border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:text-white text-xs"
               disabled={loading}
             />
             {errors.food_name && (
-              <p id="food-name-error" className="text-red-500 dark:text-red-400 text-sm mt-1">
+              <p id="food-name-error" className="text-red-500 dark:text-red-400 text-xs mt-1">
                 Food Name is required
               </p>
             )}
@@ -98,7 +98,7 @@ export default function AddMealModal({ isOpen, onClose }: AddMealModalProps) {
 
           {/* Food Rating */}
           <div>
-            <Label htmlFor="food_rating" className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-1 block">
+            <Label htmlFor="food_rating" className="text-xs font-medium text-gray-700 dark:text-gray-200 mb-1 block">
               Food rating
             </Label>
             <Input
@@ -110,11 +110,11 @@ export default function AddMealModal({ isOpen, onClose }: AddMealModalProps) {
               min="0"
               max="5"
               placeholder="4.5"
-              className="h-11 border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:text-white"
+              className="h-9 border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:text-white text-xs"
               disabled={loading}
             />
             {errors.food_rating && (
-              <p id="food-rating-error" className="text-red-500 dark:text-red-400 text-sm mt-1">
+              <p id="food-rating-error" className="text-red-500 dark:text-red-400 text-xs mt-1">
                 Food Rating must be a number
               </p>
             )}
@@ -122,7 +122,7 @@ export default function AddMealModal({ isOpen, onClose }: AddMealModalProps) {
 
           {/* Food Image URL */}
           <div>
-            <Label htmlFor="food_image" className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-1 block">
+            <Label htmlFor="food_image" className="text-xs font-medium text-gray-700 dark:text-gray-200 mb-1 block">
               Food image URL
             </Label>
             <Input
@@ -131,11 +131,11 @@ export default function AddMealModal({ isOpen, onClose }: AddMealModalProps) {
               name="food_image"
               type="url"
               placeholder="https://example.com/image.jpg"
-              className="h-11 border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:text-white"
+              className="h-9 border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:text-white text-xs"
               disabled={loading}
             />
             {errors.food_image && (
-              <p id="food-image-error" className="text-red-500 dark:text-red-400 text-sm mt-1">
+              <p id="food-image-error" className="text-red-500 dark:text-red-400 text-xs mt-1">
                 Food Image URL is required
               </p>
             )}
@@ -145,7 +145,7 @@ export default function AddMealModal({ isOpen, onClose }: AddMealModalProps) {
           <div>
             <Label
               htmlFor="restaurant_name"
-              className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-1 block"
+              className="text-xs font-medium text-gray-700 dark:text-gray-200 mb-1 block"
             >
               Restaurant name
             </Label>
@@ -155,11 +155,11 @@ export default function AddMealModal({ isOpen, onClose }: AddMealModalProps) {
               name="restaurant_name"
               type="text"
               placeholder="Restaurant name"
-              className="h-11 border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:text-white"
+              className="h-9 border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:text-white text-xs"
               disabled={loading}
             />
             {errors.restaurant_name && (
-              <p id="restaurant-name-error" className="text-red-500 dark:text-red-400 text-sm mt-1">
+              <p id="restaurant-name-error" className="text-red-500 dark:text-red-400 text-xs mt-1">
                 Restaurant Name is required
               </p>
             )}
@@ -169,7 +169,7 @@ export default function AddMealModal({ isOpen, onClose }: AddMealModalProps) {
           <div>
             <Label
               htmlFor="restaurant_logo"
-              className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-1 block"
+              className="text-xs font-medium text-gray-700 dark:text-gray-200 mb-1 block"
             >
               Restaurant logo URL
             </Label>
@@ -179,11 +179,11 @@ export default function AddMealModal({ isOpen, onClose }: AddMealModalProps) {
               name="restaurant_logo"
               type="url"
               placeholder="https://example.com/logo.jpg"
-              className="h-11 border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:text-white"
+              className="h-9 border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:text-white text-xs"
               disabled={loading}
             />
             {errors.restaurant_logo && (
-              <p id="restaurant-logo-error" className="text-red-500 dark:text-red-400 text-sm mt-1">
+              <p id="restaurant-logo-error" className="text-red-500 dark:text-red-400 text-xs mt-1">
                 Restaurant Logo URL is required
               </p>
             )}
@@ -193,7 +193,7 @@ export default function AddMealModal({ isOpen, onClose }: AddMealModalProps) {
           <div>
             <Label
               htmlFor="restaurant_status"
-              className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-1 block"
+              className="text-xs font-medium text-gray-700 dark:text-gray-200 mb-1 block"
             >
               Restaurant status (optional)
             </Label>
@@ -203,7 +203,7 @@ export default function AddMealModal({ isOpen, onClose }: AddMealModalProps) {
               onValueChange={(value: "Open Now" | "Closed") => setValue("restaurant_status", value)}
               disabled={loading}
             >
-              <SelectTrigger className="h-11 border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:text-white">
+              <SelectTrigger className="h-9 border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:text-white">
                 <SelectValue placeholder="Select status" />
               </SelectTrigger>
               <SelectContent className="dark:bg-gray-800 dark:border-gray-600">
@@ -216,7 +216,7 @@ export default function AddMealModal({ isOpen, onClose }: AddMealModalProps) {
               </SelectContent>
             </Select>
             {errors.restaurant_status && (
-              <p id="restaurant-status-error" className="text-red-500 dark:text-red-400 text-sm mt-1">
+              <p id="restaurant-status-error" className="text-red-500 dark:text-red-400 text-xs mt-1">
                 Restaurant Status must be 'Open Now' or 'Closed'
               </p>
             )}
@@ -224,7 +224,7 @@ export default function AddMealModal({ isOpen, onClose }: AddMealModalProps) {
 
           {/* Price */}
           <div>
-            <Label htmlFor="price" className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-1 block">
+            <Label htmlFor="price" className="text-xs font-medium text-gray-700 dark:text-gray-200 mb-1 block">
               Price (optional)
             </Label>
             <Input
@@ -235,10 +235,10 @@ export default function AddMealModal({ isOpen, onClose }: AddMealModalProps) {
               step="0.01"
               min="0"
               placeholder="12.99"
-              className="h-11 border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:text-white"
+              className="h-9 border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:text-white text-xs"
               disabled={loading}
             />
-            {errors.price && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.price.message}</p>}
+            {errors.price && <p className="text-red-500 dark:text-red-400 text-xs mt-1">{errors.price.message}</p>}
           </div>
 
           {/* Action Buttons */}
@@ -246,7 +246,7 @@ export default function AddMealModal({ isOpen, onClose }: AddMealModalProps) {
             <Button
               type="submit"
               disabled={loading}
-              className="flex-1 bg-primary-500 hover:bg-primary-600 text-white h-11 font-medium shadow-sm transition-all disabled:opacity-50"
+              className="flex-1 bg-primary-500 hover:bg-primary-600 text-white h-9 font-medium shadow-sm transition-all disabled:opacity-50"
             >
               {loading ? (
                 <>
@@ -262,7 +262,7 @@ export default function AddMealModal({ isOpen, onClose }: AddMealModalProps) {
               variant="outline"
               onClick={handleCancel}
               disabled={loading}
-              className="flex-1 h-11 font-medium border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 dark:text-gray-200"
+              className="flex-1 h-9 font-medium border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 dark:text-gray-200"
             >
               Cancel
             </Button>
