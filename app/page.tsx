@@ -101,11 +101,18 @@ export default function HomePage() {
       <header className="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-100 dark:border-gray-700">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">🍕</span>
+            <div className="flex items-center space-x-3">
+              {/* FoodWagon Logo - Figma Match */}
+              <div className="flex items-center space-x-3">
+                {/* Icon Image */}
+                <div className="flex-shrink-0">
+                  <img src="/images/icon.png" alt="FoodWagon Icon" className="w-8 h-8 object-contain" />
+                </div>
+                {/* FoodWagon Text */}
+                <span className="text-2xl font-bold bg-gradient-to-r from-orange-500 to-yellow-500 bg-clip-text text-transparent">
+                  FoodWagon
+                </span>
               </div>
-              <span className="text-xl font-bold text-gray-900 dark:text-white">FoodWagon</span>
             </div>
             <div className="flex items-center space-x-3">
               <ThemeToggle />
@@ -118,6 +125,8 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+        {/* Orange underline */}
+        <div className="h-0.5 bg-gradient-to-r from-orange-500 to-yellow-500"></div>
       </header>
 
       {/* Hero Section - Figma Match */}
@@ -263,14 +272,10 @@ export default function HomePage() {
                     />
                     {/* Price Badge */}
                     <div className="absolute top-3 left-3">
-                      <span
-                        className="text-white text-sm font-semibold px-3 py-1.5 rounded-lg shadow-sm flex items-center gap-1"
-                        style={{ backgroundColor: '#F17228' }}
-                      >
+                      <span className="bg-red-500 text-white text-sm font-semibold px-3 py-1.5 rounded-lg shadow-sm flex items-center gap-1">
                         <span className="text-xs">💰</span>
                         {formatPrice(meal.price)}
                       </span>
-
                     </div>
                   </div>
 
