@@ -263,9 +263,14 @@ export default function HomePage() {
                     />
                     {/* Price Badge */}
                     <div className="absolute top-3 left-3">
-                      <span className="bg-primary-500 text-white text-sm font-semibold px-2 py-1 rounded-md shadow-sm">
+                      <span
+                        className="text-white text-sm font-semibold px-3 py-1.5 rounded-lg shadow-sm flex items-center gap-1"
+                        style={{ backgroundColor: '#F17228' }}
+                      >
+                        <span className="text-xs">💰</span>
                         {formatPrice(meal.price)}
                       </span>
+
                     </div>
                   </div>
 
